@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!--    Нужно для регистрации и  настройки постпроцессоров-->
+    <!--    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"></bean>-->
+    <!--    Все процессоры и постпроцессоры находятся в контексте приложения и хранятся в contextXML beanFactory  singletonObjects и beanPostProcessors  -->
+    <!--   таким образом мы подключаем все пост процессоры CommonAnnotationBeanPostProcessor, PersistenceAnnotationBeanPostProcessor,
+    ConfigurationClassPostProcessor, EventListenerMethodProcessor, AutowiredAnnotationBeanPostProcessor-->
+    <context:annotation-config></context:annotation-config>
+
+
+    <!--    Defenition bean !   -->
+    <!--    по умолчанию неявно вызывается конструктор без параметров  -->
+    <bean id="pool1" name="alias1,alias2,alias3" class="com.parom.spring.beans.ConnectionPoolXMLbased"/>
+
+    <bean id="pool2" name="alias4" class="com.parom.spring.beans.ConnectionPoolXMLbased"
+          init-method="init"
+          destroy-method="destroy"
+    />
+
+    <bean class="com.parom.spring.beans.ConnectionPoolAnnotationBased"></bean>
+
+</beans>
